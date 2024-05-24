@@ -1,0 +1,1394 @@
+{
+	"dag": {
+		"node-1716552920062": {
+			"classification": "DataSource",
+			"type": "Catalog",
+			"name": "movies_from_s3",
+			"inputs": [],
+			"database": "airlines_datamart",
+			"table": "imdb_movies_rating_csv",
+			"runtimeParameters": [],
+			"generatedNodeName": "movies_from_s3_node1716552920062",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "poster_link",
+						"fullPath": [
+							"poster_link"
+						],
+						"type": "string"
+					},
+					{
+						"key": "series_title",
+						"fullPath": [
+							"series_title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "released_year",
+						"fullPath": [
+							"released_year"
+						],
+						"type": "string"
+					},
+					{
+						"key": "certificate",
+						"fullPath": [
+							"certificate"
+						],
+						"type": "string"
+					},
+					{
+						"key": "runtime",
+						"fullPath": [
+							"runtime"
+						],
+						"type": "string"
+					},
+					{
+						"key": "genre",
+						"fullPath": [
+							"genre"
+						],
+						"type": "string"
+					},
+					{
+						"key": "imdb_rating",
+						"fullPath": [
+							"imdb_rating"
+						],
+						"type": "double"
+					},
+					{
+						"key": "overview",
+						"fullPath": [
+							"overview"
+						],
+						"type": "string"
+					},
+					{
+						"key": "meta_score",
+						"fullPath": [
+							"meta_score"
+						],
+						"type": "long"
+					},
+					{
+						"key": "director",
+						"fullPath": [
+							"director"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star1",
+						"fullPath": [
+							"star1"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star2",
+						"fullPath": [
+							"star2"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star3",
+						"fullPath": [
+							"star3"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star4",
+						"fullPath": [
+							"star4"
+						],
+						"type": "string"
+					},
+					{
+						"key": "no_of_votes",
+						"fullPath": [
+							"no_of_votes"
+						],
+						"type": "long"
+					},
+					{
+						"key": "gross",
+						"fullPath": [
+							"gross"
+						],
+						"type": "string"
+					}
+				]
+			]
+		},
+		"node-1716553152250": {
+			"classification": "Transform",
+			"type": "EvaluateDataQualityMultiFrame",
+			"name": "Evaluate Data Quality",
+			"inputs": [
+				"node-1716552920062"
+			],
+			"ruleset": "# Example rules: Completeness \"colA\" between 0.4 and 0.8, ColumnCount > 10\nRules = [\n     IsComplete \"imdb_rating\",\n    ColumnValues \"imdb_rating\" between 8.5 and 10.3\n]",
+			"publishingOptions": {
+				"resultsPublishingEnabled": true,
+				"cloudWatchMetricsEnabled": true,
+				"resultsS3Prefix": ""
+			},
+			"stopJobOnFailureOptions": {},
+			"additionalOptions": {
+				"performanceTuning.caching": "CACHE_NOTHING",
+				"observations.scope": "ALL"
+			},
+			"generatedNodeName": "EvaluateDataQuality_node1716553152250",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "Rule",
+						"fullPath": [
+							"Rule"
+						],
+						"type": "string"
+					},
+					{
+						"key": "Outcome",
+						"fullPath": [
+							"Outcome"
+						],
+						"type": "string"
+					},
+					{
+						"key": "FailureReason",
+						"fullPath": [
+							"FailureReason"
+						],
+						"type": "string"
+					},
+					{
+						"key": "EvaluatedMetrics",
+						"fullPath": [
+							"EvaluatedMetrics"
+						],
+						"type": "object",
+						"children": [
+							{
+								"key": "string",
+								"fullPath": [
+									"EvaluatedMetrics",
+									"string"
+								],
+								"type": "double"
+							}
+						]
+					},
+					{
+						"key": "EvaluatedRule",
+						"fullPath": [
+							"EvaluatedRule"
+						],
+						"type": "string"
+					}
+				],
+				[
+					{
+						"key": "poster_link",
+						"fullPath": [
+							"poster_link"
+						],
+						"type": "string"
+					},
+					{
+						"key": "series_title",
+						"fullPath": [
+							"series_title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "released_year",
+						"fullPath": [
+							"released_year"
+						],
+						"type": "string"
+					},
+					{
+						"key": "certificate",
+						"fullPath": [
+							"certificate"
+						],
+						"type": "string"
+					},
+					{
+						"key": "runtime",
+						"fullPath": [
+							"runtime"
+						],
+						"type": "string"
+					},
+					{
+						"key": "genre",
+						"fullPath": [
+							"genre"
+						],
+						"type": "string"
+					},
+					{
+						"key": "imdb_rating",
+						"fullPath": [
+							"imdb_rating"
+						],
+						"type": "double"
+					},
+					{
+						"key": "overview",
+						"fullPath": [
+							"overview"
+						],
+						"type": "string"
+					},
+					{
+						"key": "meta_score",
+						"fullPath": [
+							"meta_score"
+						],
+						"type": "long"
+					},
+					{
+						"key": "director",
+						"fullPath": [
+							"director"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star1",
+						"fullPath": [
+							"star1"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star2",
+						"fullPath": [
+							"star2"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star3",
+						"fullPath": [
+							"star3"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star4",
+						"fullPath": [
+							"star4"
+						],
+						"type": "string"
+					},
+					{
+						"key": "no_of_votes",
+						"fullPath": [
+							"no_of_votes"
+						],
+						"type": "long"
+					},
+					{
+						"key": "gross",
+						"fullPath": [
+							"gross"
+						],
+						"type": "string"
+					},
+					{
+						"key": "DataQualityRulesPass",
+						"fullPath": [
+							"DataQualityRulesPass"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityRulesFail",
+						"fullPath": [
+							"DataQualityRulesFail"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityRulesSkip",
+						"fullPath": [
+							"DataQualityRulesSkip"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityEvaluationResult",
+						"fullPath": [
+							"DataQualityEvaluationResult"
+						],
+						"type": "string"
+					}
+				],
+				[
+					{
+						"key": "poster_link",
+						"fullPath": [
+							"poster_link"
+						],
+						"type": "string"
+					},
+					{
+						"key": "series_title",
+						"fullPath": [
+							"series_title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "released_year",
+						"fullPath": [
+							"released_year"
+						],
+						"type": "string"
+					},
+					{
+						"key": "certificate",
+						"fullPath": [
+							"certificate"
+						],
+						"type": "string"
+					},
+					{
+						"key": "runtime",
+						"fullPath": [
+							"runtime"
+						],
+						"type": "string"
+					},
+					{
+						"key": "genre",
+						"fullPath": [
+							"genre"
+						],
+						"type": "string"
+					},
+					{
+						"key": "imdb_rating",
+						"fullPath": [
+							"imdb_rating"
+						],
+						"type": "double"
+					},
+					{
+						"key": "overview",
+						"fullPath": [
+							"overview"
+						],
+						"type": "string"
+					},
+					{
+						"key": "meta_score",
+						"fullPath": [
+							"meta_score"
+						],
+						"type": "long"
+					},
+					{
+						"key": "director",
+						"fullPath": [
+							"director"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star1",
+						"fullPath": [
+							"star1"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star2",
+						"fullPath": [
+							"star2"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star3",
+						"fullPath": [
+							"star3"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star4",
+						"fullPath": [
+							"star4"
+						],
+						"type": "string"
+					},
+					{
+						"key": "no_of_votes",
+						"fullPath": [
+							"no_of_votes"
+						],
+						"type": "long"
+					},
+					{
+						"key": "gross",
+						"fullPath": [
+							"gross"
+						],
+						"type": "string"
+					}
+				]
+			]
+		},
+		"node-1716553216570": {
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"name": "ruleOutcomes",
+			"index": 0,
+			"inputs": [
+				"node-1716553152250"
+			],
+			"generatedNodeName": "ruleOutcomes_node1716553216570",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "Rule",
+						"fullPath": [
+							"Rule"
+						],
+						"type": "string"
+					},
+					{
+						"key": "Outcome",
+						"fullPath": [
+							"Outcome"
+						],
+						"type": "string"
+					},
+					{
+						"key": "FailureReason",
+						"fullPath": [
+							"FailureReason"
+						],
+						"type": "string"
+					},
+					{
+						"key": "EvaluatedMetrics",
+						"fullPath": [
+							"EvaluatedMetrics"
+						],
+						"type": "object",
+						"children": [
+							{
+								"key": "string",
+								"fullPath": [
+									"EvaluatedMetrics",
+									"string"
+								],
+								"type": "double"
+							}
+						]
+					},
+					{
+						"key": "EvaluatedRule",
+						"fullPath": [
+							"EvaluatedRule"
+						],
+						"type": "string"
+					}
+				]
+			]
+		},
+		"node-1716553837704": {
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"name": "rowLevelOutcomes",
+			"index": 0,
+			"inputs": [
+				"node-1716553152250"
+			],
+			"generatedNodeName": "rowLevelOutcomes_node1716553837704",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "poster_link",
+						"fullPath": [
+							"poster_link"
+						],
+						"type": "string"
+					},
+					{
+						"key": "series_title",
+						"fullPath": [
+							"series_title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "released_year",
+						"fullPath": [
+							"released_year"
+						],
+						"type": "string"
+					},
+					{
+						"key": "certificate",
+						"fullPath": [
+							"certificate"
+						],
+						"type": "string"
+					},
+					{
+						"key": "runtime",
+						"fullPath": [
+							"runtime"
+						],
+						"type": "string"
+					},
+					{
+						"key": "genre",
+						"fullPath": [
+							"genre"
+						],
+						"type": "string"
+					},
+					{
+						"key": "imdb_rating",
+						"fullPath": [
+							"imdb_rating"
+						],
+						"type": "double"
+					},
+					{
+						"key": "overview",
+						"fullPath": [
+							"overview"
+						],
+						"type": "string"
+					},
+					{
+						"key": "meta_score",
+						"fullPath": [
+							"meta_score"
+						],
+						"type": "long"
+					},
+					{
+						"key": "director",
+						"fullPath": [
+							"director"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star1",
+						"fullPath": [
+							"star1"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star2",
+						"fullPath": [
+							"star2"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star3",
+						"fullPath": [
+							"star3"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star4",
+						"fullPath": [
+							"star4"
+						],
+						"type": "string"
+					},
+					{
+						"key": "no_of_votes",
+						"fullPath": [
+							"no_of_votes"
+						],
+						"type": "long"
+					},
+					{
+						"key": "gross",
+						"fullPath": [
+							"gross"
+						],
+						"type": "string"
+					},
+					{
+						"key": "DataQualityRulesPass",
+						"fullPath": [
+							"DataQualityRulesPass"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityRulesFail",
+						"fullPath": [
+							"DataQualityRulesFail"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityRulesSkip",
+						"fullPath": [
+							"DataQualityRulesSkip"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityEvaluationResult",
+						"fullPath": [
+							"DataQualityEvaluationResult"
+						],
+						"type": "string"
+					}
+				]
+			]
+		},
+		"node-1716553999311": {
+			"classification": "DataSink",
+			"type": "S3",
+			"name": "Amazon S3",
+			"inputs": [
+				"node-1716553216570"
+			],
+			"format": "json",
+			"compression": "snappy",
+			"path": "s3://movies-11/rule_outcome_from_etl/",
+			"partitionKeys": [],
+			"updateCatalogOptions": "none",
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": false
+			},
+			"autoDataQuality": {
+				"isEnabled": false
+			},
+			"additionalOptions": {},
+			"generatedNodeName": "AmazonS3_node1716553999311",
+			"codeGenVersion": 2
+		},
+		"node-1716554160630": {
+			"classification": "Transform",
+			"type": "Route",
+			"name": "Conditional Router",
+			"inputs": [
+				"node-1716553837704"
+			],
+			"groupFiltersList": [
+				{
+					"groupName": "default_group",
+					"filters": [],
+					"logicalOperator": "AND"
+				},
+				{
+					"groupName": "failed_records",
+					"filters": [
+						{
+							"operation": "REGEX",
+							"negated": false,
+							"values": [
+								{
+									"type": "CONSTANT",
+									"value": "Failed"
+								},
+								{
+									"type": "COLUMNEXTRACTED",
+									"value": "DataQualityEvaluationResult"
+								}
+							]
+						}
+					],
+					"logicalOperator": "OR"
+				}
+			],
+			"generatedNodeName": "ConditionalRouter_node1716554160630",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "poster_link",
+						"fullPath": [
+							"poster_link"
+						],
+						"type": "string"
+					},
+					{
+						"key": "series_title",
+						"fullPath": [
+							"series_title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "released_year",
+						"fullPath": [
+							"released_year"
+						],
+						"type": "string"
+					},
+					{
+						"key": "certificate",
+						"fullPath": [
+							"certificate"
+						],
+						"type": "string"
+					},
+					{
+						"key": "runtime",
+						"fullPath": [
+							"runtime"
+						],
+						"type": "string"
+					},
+					{
+						"key": "genre",
+						"fullPath": [
+							"genre"
+						],
+						"type": "string"
+					},
+					{
+						"key": "imdb_rating",
+						"fullPath": [
+							"imdb_rating"
+						],
+						"type": "double"
+					},
+					{
+						"key": "overview",
+						"fullPath": [
+							"overview"
+						],
+						"type": "string"
+					},
+					{
+						"key": "meta_score",
+						"fullPath": [
+							"meta_score"
+						],
+						"type": "long"
+					},
+					{
+						"key": "director",
+						"fullPath": [
+							"director"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star1",
+						"fullPath": [
+							"star1"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star2",
+						"fullPath": [
+							"star2"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star3",
+						"fullPath": [
+							"star3"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star4",
+						"fullPath": [
+							"star4"
+						],
+						"type": "string"
+					},
+					{
+						"key": "no_of_votes",
+						"fullPath": [
+							"no_of_votes"
+						],
+						"type": "long"
+					},
+					{
+						"key": "gross",
+						"fullPath": [
+							"gross"
+						],
+						"type": "string"
+					},
+					{
+						"key": "DataQualityRulesPass",
+						"fullPath": [
+							"DataQualityRulesPass"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityRulesFail",
+						"fullPath": [
+							"DataQualityRulesFail"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityRulesSkip",
+						"fullPath": [
+							"DataQualityRulesSkip"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityEvaluationResult",
+						"fullPath": [
+							"DataQualityEvaluationResult"
+						],
+						"type": "string"
+					}
+				]
+			]
+		},
+		"node-1716554160916": {
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"name": "default_group",
+			"index": 0,
+			"inputs": [
+				"node-1716554160630"
+			],
+			"generatedNodeName": "default_group_node1716554160916",
+			"codeGenVersion": 2
+		},
+		"node-1716554161005": {
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"name": "failed_records",
+			"index": 0,
+			"inputs": [
+				"node-1716554160630"
+			],
+			"generatedNodeName": "failed_records_node1716554161005",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "star2",
+						"fullPath": [
+							"star2"
+						],
+						"type": "string"
+					},
+					{
+						"key": "gross",
+						"fullPath": [
+							"gross"
+						],
+						"type": "string"
+					},
+					{
+						"key": "no_of_votes",
+						"fullPath": [
+							"no_of_votes"
+						],
+						"type": "long"
+					},
+					{
+						"key": "DataQualityEvaluationResult",
+						"fullPath": [
+							"DataQualityEvaluationResult"
+						],
+						"type": "string"
+					},
+					{
+						"key": "director",
+						"fullPath": [
+							"director"
+						],
+						"type": "string"
+					},
+					{
+						"key": "DataQualityRulesSkip",
+						"fullPath": [
+							"DataQualityRulesSkip"
+						],
+						"type": "null array"
+					},
+					{
+						"key": "certificate",
+						"fullPath": [
+							"certificate"
+						],
+						"type": "string"
+					},
+					{
+						"key": "runtime",
+						"fullPath": [
+							"runtime"
+						],
+						"type": "string"
+					},
+					{
+						"key": "DataQualityRulesFail",
+						"fullPath": [
+							"DataQualityRulesFail"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "poster_link",
+						"fullPath": [
+							"poster_link"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star1",
+						"fullPath": [
+							"star1"
+						],
+						"type": "string"
+					},
+					{
+						"key": "DataQualityRulesPass",
+						"fullPath": [
+							"DataQualityRulesPass"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "star4",
+						"fullPath": [
+							"star4"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star3",
+						"fullPath": [
+							"star3"
+						],
+						"type": "string"
+					},
+					{
+						"key": "meta_score",
+						"fullPath": [
+							"meta_score"
+						],
+						"type": "long"
+					},
+					{
+						"key": "released_year",
+						"fullPath": [
+							"released_year"
+						],
+						"type": "string"
+					},
+					{
+						"key": "series_title",
+						"fullPath": [
+							"series_title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "imdb_rating",
+						"fullPath": [
+							"imdb_rating"
+						],
+						"type": "double"
+					},
+					{
+						"key": "overview",
+						"fullPath": [
+							"overview"
+						],
+						"type": "string"
+					},
+					{
+						"key": "genre",
+						"fullPath": [
+							"genre"
+						],
+						"type": "string"
+					}
+				]
+			]
+		},
+		"node-1716554358334": {
+			"classification": "DataSink",
+			"type": "S3",
+			"name": "Amazon S3",
+			"inputs": [
+				"node-1716554161005"
+			],
+			"format": "json",
+			"compression": "snappy",
+			"path": "s3://movies-11/bad_records/",
+			"partitionKeys": [],
+			"updateCatalogOptions": "none",
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": false
+			},
+			"autoDataQuality": {
+				"isEnabled": false
+			},
+			"additionalOptions": {},
+			"generatedNodeName": "AmazonS3_node1716554358334",
+			"codeGenVersion": 2
+		},
+		"node-1716554405300": {
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"name": "Change Schema",
+			"inputs": [
+				"node-1716554160916"
+			],
+			"mapping": [
+				{
+					"toKey": "overview",
+					"fromPath": [
+						"overview"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "gross",
+					"fromPath": [
+						"gross"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "director",
+					"fromPath": [
+						"director"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "certificate",
+					"fromPath": [
+						"certificate"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "star4",
+					"fromPath": [
+						"star4"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "runtime",
+					"fromPath": [
+						"runtime"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "star2",
+					"fromPath": [
+						"star2"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "star3",
+					"fromPath": [
+						"star3"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "no_of_votes",
+					"fromPath": [
+						"no_of_votes"
+					],
+					"toType": "int",
+					"fromType": "long",
+					"dropped": false
+				},
+				{
+					"toKey": "series_title",
+					"fromPath": [
+						"series_title"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "meta_score",
+					"fromPath": [
+						"meta_score"
+					],
+					"toType": "int",
+					"fromType": "long",
+					"dropped": false
+				},
+				{
+					"toKey": "star1",
+					"fromPath": [
+						"star1"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "genre",
+					"fromPath": [
+						"genre"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "released_year",
+					"fromPath": [
+						"released_year"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "poster_link",
+					"fromPath": [
+						"poster_link"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
+				},
+				{
+					"toKey": "imdb_rating",
+					"fromPath": [
+						"imdb_rating"
+					],
+					"toType": "decimal",
+					"fromType": "double",
+					"dropped": false
+				}
+			],
+			"generatedNodeName": "ChangeSchema_node1716554405300",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "poster_link",
+						"fullPath": [
+							"poster_link"
+						],
+						"type": "string"
+					},
+					{
+						"key": "series_title",
+						"fullPath": [
+							"series_title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "released_year",
+						"fullPath": [
+							"released_year"
+						],
+						"type": "string"
+					},
+					{
+						"key": "certificate",
+						"fullPath": [
+							"certificate"
+						],
+						"type": "string"
+					},
+					{
+						"key": "runtime",
+						"fullPath": [
+							"runtime"
+						],
+						"type": "string"
+					},
+					{
+						"key": "genre",
+						"fullPath": [
+							"genre"
+						],
+						"type": "string"
+					},
+					{
+						"key": "imdb_rating",
+						"fullPath": [
+							"imdb_rating"
+						],
+						"type": "decimal"
+					},
+					{
+						"key": "overview",
+						"fullPath": [
+							"overview"
+						],
+						"type": "string"
+					},
+					{
+						"key": "meta_score",
+						"fullPath": [
+							"meta_score"
+						],
+						"type": "int"
+					},
+					{
+						"key": "director",
+						"fullPath": [
+							"director"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star1",
+						"fullPath": [
+							"star1"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star2",
+						"fullPath": [
+							"star2"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star3",
+						"fullPath": [
+							"star3"
+						],
+						"type": "string"
+					},
+					{
+						"key": "star4",
+						"fullPath": [
+							"star4"
+						],
+						"type": "string"
+					},
+					{
+						"key": "no_of_votes",
+						"fullPath": [
+							"no_of_votes"
+						],
+						"type": "int"
+					},
+					{
+						"key": "gross",
+						"fullPath": [
+							"gross"
+						],
+						"type": "string"
+					}
+				]
+			]
+		},
+		"node-1716554603923": {
+			"classification": "DataSink",
+			"type": "Catalog",
+			"name": "AWS Glue Data Catalog",
+			"inputs": [
+				"node-1716554405300"
+			],
+			"database": "airlines_datamart",
+			"table": "dev_movies_imdb_movies_rating",
+			"runtimeParameters": [],
+			"format": "json",
+			"partitionKeys": [],
+			"updateCatalogOptions": "none",
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": false
+			},
+			"storage": "Redshift",
+			"redshiftTmpDir": "s3://temp-11s/movies-data/",
+			"tmpDirIAMRole": "arn:aws:iam::398738544149:role/aws-service-role/redshift.amazonaws.com/AWSServiceRoleForRedshift",
+			"generatedNodeName": "AWSGlueDataCatalog_node1716554603923",
+			"codeGenVersion": 2
+		}
+	},
+	"jobConfig": {
+		"command": "glueetl",
+		"description": "",
+		"role": "arn:aws:iam::398738544149:role/Assignment11",
+		"scriptName": "movie-data-analysis.py",
+		"version": "4.0",
+		"language": "python-3",
+		"scriptLocation": "s3://aws-glue-assets-398738544149-us-east-1/scripts/",
+		"temporaryDirectory": "s3://aws-glue-assets-398738544149-us-east-1/temporary/",
+		"timeout": 2880,
+		"maxConcurrentRuns": 1,
+		"workerType": "G.1X",
+		"numberOfWorkers": "2",
+		"maxRetries": 0,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"security": "none",
+		"bookmark": "job-bookmark-enable",
+		"logging": true,
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"sparkPath": "s3://aws-glue-assets-398738544149-us-east-1/sparkHistoryLogs/",
+		"serverEncryption": false,
+		"glueHiveMetastore": true,
+		"etlAutoScaling": false,
+		"etlAutoTuning": false,
+		"jobParameters": [],
+		"tags": [],
+		"connectionsList": [
+			"Redshift connection"
+		],
+		"jobMode": "VISUAL_MODE",
+		"name": "movie-data-analysis",
+		"pythonPath": ""
+	},
+	"hasBeenSaved": false,
+	"redshift-s3-select": "s3://aws-glue-assets-398738544149-us-east-1/temporary/"
+}
