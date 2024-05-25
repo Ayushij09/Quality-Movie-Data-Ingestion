@@ -1,0 +1,10 @@
+select * from movies.imdb_movies_rating limit 5;
+CREATE MATERIALIZED VIEW movies.year_aggregated_genre AS
+select released_year AS year,
+genre,
+count(*) AS total_movies
+from movies.imdb_movies_rating
+GROUP BY released_year,genre;
+SELECT * from movies.year_aggregated_genre;
+select count(*) from movies.imdb_movies_rating limit 5;
+refresh MATERIALIZED VIEW movies.year_aggregated_genre;
